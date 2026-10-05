@@ -2,6 +2,7 @@ plugins {
    id 'java'
    id 'application'
    id 'org.ajoberstar.git-publish' version '4.2.0'
+   id 'pmd'
 }
 
 repositories {
@@ -12,6 +13,11 @@ repositories {
 java {
     sourceCompatibility = JavaVersion.toVersion(21)
     targetCompatibility = JavaVersion.toVersion(21)
+}
+
+pmd {
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
 }
 
 dependencies {
@@ -37,7 +43,7 @@ task copyHTML (type: Copy, dependsOn: ['build']) {
     into 'build/reports'
 }
 
-task reports (type: Copy, dependsOn: ['javadoc', 'copyHTML']) {
+task reports (type: Copy, dependsOn: ['javadoc', 'copyHTML', 'pmdMain']) {
     from 'build/docs'
     into 'build/reports'
 }
