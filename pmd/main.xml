@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 https://pmd.github.io/schema/report_2_0_0.xsd" version="7.13.0" timestamp="2026-10-05T01:10:29.770">
+<file name="/home/runner/work/CS351--ciAsst--tybrick47/CS351--ciAsst--tybrick47/src/main/java/edu/odu/cs/MostCommonWords.java">
+<violation beginline="31" endline="33" begincolumn="11" endcolumn="10" rule="EmptyCatchBlock" ruleset="Error Prone" package="edu.odu.cs" class="MostCommonWords" method="readAndCount" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.13.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/home/runner/work/CS351--ciAsst--tybrick47/CS351--ciAsst--tybrick47/src/main/java/edu/odu/cs/WordCount.java">
+<violation beginline="12" endline="12" begincolumn="20" endcolumn="26" rule="OverrideBothEqualsAndHashcode" ruleset="Error Prone" package="edu.odu.cs" class="WordCount" method="equals" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.13.0/pmd_rules_java_errorprone.html#overridebothequalsandhashcode" priority="3">
+Ensure you override both equals() and hashCode()
+</violation>
+</file>
+<file name="/home/runner/work/CS351--ciAsst--tybrick47/CS351--ciAsst--tybrick47/src/main/java/edu/odu/cs/WordCounter.java">
+<violation beginline="19" endline="19" begincolumn="20" endcolumn="24" rule="NullAssignment" ruleset="Error Prone" package="edu.odu.cs" class="WordCounter" method="WordCounter" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.13.0/pmd_rules_java_errorprone.html#nullassignment" priority="3">
+Assigning an Object to null is a code smell.  Consider refactoring.
+</violation>
+</file>
+<file name="/home/runner/work/CS351--ciAsst--tybrick47/CS351--ciAsst--tybrick47/src/main/java/edu/odu/cs/WordFilter.java">
+<violation beginline="20" endline="20" begincolumn="20" endcolumn="41" rule="UseLocaleWithCaseConversions" ruleset="Error Prone" package="edu.odu.cs" class="WordFilter" method="removeCapitalization" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.13.0/pmd_rules_java_errorprone.html#uselocalewithcaseconversions" priority="3">
+When doing a String.toLowerCase()/toUpperCase() call, use a Locale
+</violation>
+<violation beginline="70" endline="70" begincolumn="23" endcolumn="26" rule="AvoidLiteralsInIfCondition" ruleset="Error Prone" package="edu.odu.cs" class="WordFilter" method="trimHyphens" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.13.0/pmd_rules_java_errorprone.html#avoidliteralsinifcondition" priority="3">
+Avoid using literals in if statements
+</violation>
+</file>
+</pmd>
