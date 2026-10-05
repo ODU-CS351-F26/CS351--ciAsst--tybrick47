@@ -10,13 +10,14 @@ repositories {
 
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(17)
-    targetCompatibility = JavaVersion.toVersion(17)
+    sourceCompatibility = JavaVersion.toVersion(21)
+    targetCompatibility = JavaVersion.toVersion(21)
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
-    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.13.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.13.0'
+    testImplementation 'org.hamcrest:hamcrest:3.0'
 }
 
 tasks.withType(Test) {
@@ -29,5 +30,49 @@ tasks.withType(Test) {
 
 application { //Allows  ./gradlew run --args=path-to-test-data
     mainClass = 'edu.odu.cs.MostCommonWords'
+}
+
+task copyHTML (type: Copy, dependsOn: ['build']) {
+    from 'src/main/html'
+    into 'build/reports'
+}
+
+task reports (type: Copy, dependsOn: ['javadoc', 'copyHTML']) {
+    from 'build/docs'
+    into 'build/reports'
+}
+
+////  Publication of website to GitHub
+
+def pagesDir = file('build/gh-pages')
+def pagesRepo = 'https://github.com/ODU-CS351-F26/CS351--ciAsst--tybrick47.git'
+
+task cloneGhPages(type: Exec) {
+    doFirst { delete pagesDir }
+    commandLine 'git', 'clone', '--branch', 'gh-pages', '--single-branch', pagesRepo, pagesDir.path
+}
+
+task copyReportsToPages(type: Sync, dependsOn: ['reports', 'cloneGhPages']) {
+    from 'build/reports'
+    into pagesDir
+    preserve { include '.git/**' }
+}
+
+task addPages(type: Exec, dependsOn: 'copyReportsToPages') {
+    workingDir pagesDir
+    commandLine 'git', 'add', '-A'
+}
+
+task commitPages(type: Exec, dependsOn: 'addPages') {
+    workingDir pagesDir
+    commandLine 'git', 'commit', '-m', 'Publishing website'
+    ignoreExitValue = true
+}
+
+task deployReports(type: Exec, dependsOn: 'commitPages') {
+    group = "Reporting"
+    description = 'Commit and push website changes to GitHub'
+    workingDir pagesDir
+    commandLine 'git', 'push', 'origin', 'gh-pages'
 }
 
