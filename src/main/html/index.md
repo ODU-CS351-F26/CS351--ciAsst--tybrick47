@@ -1,6 +1,6 @@
 # Project Reports
 
-Your Name
+Tylon Brickers
 
 * [Tests](./reports/tests/test/)
 * [JavaDoc](./reports/javadoc/)
